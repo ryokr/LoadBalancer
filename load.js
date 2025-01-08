@@ -18,7 +18,7 @@ app.use(async (req, res) => {
       // Forward the request to the selected service
       const response = await axios({
          method: req.method,
-         url: targetUrl + req.originalUrl,
+         url: targetUrl,
          data: req.body,
          headers: req.headers,
       })
@@ -29,6 +29,10 @@ app.use(async (req, res) => {
       console.error('Error while forwarding the request:', error)
       res.status(500).send('Internal Server Error')
    }
+})
+
+app.get('/', (req, res) => {
+   res.send('Meow')
 })
 
 app.listen(port, () => {
